@@ -8,6 +8,6 @@
 </head>
 <body>
 <a href="Inicio.jsp">Inicio</a> - <a href="Agregar.jsp">Agregar</a> - <a href="Listar.jsp">Listar</a><br><br>
-<h1>LISTAR</h1>
+<h1>LISTAR</h1> <!--  Acá comentamos cosas -->
 </body>
 </html>
