@@ -9,5 +9,10 @@
 <body>
 <a href="Inicio.jsp">Inicio</a> - <a href="Agregar.jsp">Agregar</a> - <a href="Listar.jsp">Listar</a><br><br>
 <h1>LISTAR</h1> <!--  Acá comentamos cosas -->
+
+<form action="servletSeguro" method="get">
+<!--  Acá se elige tipo de seguro y se carga la lista -->
+</form>
+
 </body>
 </html>
