@@ -74,17 +74,17 @@ public class SeguroDaoImpl implements SeguroDao {
 			
 			while(resultSet.next()){
 				
-				Seguro seguroTemporal = new Seguro();
-				seguroTemporal.setId(resultSet.getInt("idSeguro"));
-				seguroTemporal.setDescripcion(resultSet.getString("descripcion"));
+				Seguro temporal = new Seguro();
+				temporal.setId(resultSet.getInt("idSeguro"));
+				temporal.setDescripcion(resultSet.getString("descripcion"));
 				TipoSeguro tipoSeguroTemporal = new TipoSeguro();
 				tipoSeguroTemporal.setID(resultSet.getInt("idTipo"));
 				//agregar una busqueda de tipos de seguros
 				//tipoSeguroTemporal.setDescripcion(descripción);				
-				seguroTemporal.setTipo(tipoSeguroTemporal);
-				seguroTemporal.setCosto(resultSet.getFloat("costoContratacion"));
-				seguroTemporal.setCostoMaximo(resultSet.getFloat("costoAsegurado"));
-				result.add(seguroTemporal);
+				temporal.setTipo(tipoSeguroTemporal);
+				temporal.setCosto(resultSet.getFloat("costoContratacion"));
+				temporal.setCostoMaximo(resultSet.getFloat("costoAsegurado"));
+				result.add(temporal);
 			}
 			connection.close();
 		}catch(Exception e){

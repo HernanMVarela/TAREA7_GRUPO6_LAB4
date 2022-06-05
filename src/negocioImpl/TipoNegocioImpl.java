@@ -10,9 +10,9 @@ import negocio.TipoNegocio;
 public class TipoNegocioImpl implements TipoNegocio{
 
 	@Override
-	public List<TipoSeguro> listar() {
+	public List<TipoSeguro> ListarTodo() {
 		TipoDao Tdao = new TipoDaoImpl();
-		return Tdao.listar();
+		return Tdao.ListarTodo();
 	}
 
 }

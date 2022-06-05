@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Seguros Group - Listar Seguros</title>
 </head>
 <body>
 <a href="Inicio.jsp">Inicio</a> - <a href="Agregar.jsp">Agregar</a> - <a href="Listar.jsp">Listar</a><br><br>
@@ -35,13 +35,14 @@
 	<%}}%>	
 </select> <input type="submit" name="btnListar" value="Listar"> </p> 
 
-
-<table border="1">
-<tr><th> ID Seguro </th><th> Descripción </th><th> Descripción Tipo </th><th> Costo Contratación </th><th> Costo Asegurado </th> </tr>
 <%
 	ArrayList<Seguro> lista = null;
 	if(request.getAttribute("listaseguros")!=null){
 		lista = (ArrayList<Seguro>)request.getAttribute("listaseguros");
+		%>
+		<table border="1">
+		<tr><th> ID Seguro </th><th> Descripción </th><th> Descripción Tipo </th><th> Costo Contratación </th><th> Costo Asegurado </th> </tr>
+		<%
 		for (Seguro seg : lista){
 			if(seg.getTipo().getID() == (int)request.getAttribute("idtipo") || (int)request.getAttribute("idtipo") == 0){
 				%>

@@ -21,7 +21,8 @@ public class ServletSeguro extends HttpServlet {
 			
 			
 			// DEVOLVER LISTA E ID TIPO SEGURO
-			//request.setAttribute("listaseguros", lista);
+			//request.setAttribute("listaSeguros", listaSeguros);
+			//request.setAttribute("listaTipoSeguros", listaTipoSeguros);
 			//request.setAttribute("idtipo", id);
 			
 		}
