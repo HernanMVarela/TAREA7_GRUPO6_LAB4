@@ -5,18 +5,18 @@ public class Seguro {
 	static int cont=1;
 	private String descripcion;
 	private TipoSeguro tipo;
-	private String costo;
-	private String costoMaximo;
+	private float costo;
+	private float costoMaximo;
 	
 	public Seguro() {
 		
 	}
 	
-	public Seguro(String descripcion,String costo,String costoMaximo){
+	public Seguro(String descripcion,float costo,float costoMaximo){
 		id = devuelveProximoId();
 		this.descripcion =descripcion;
 		this.costo = costo;
-		this.costoMaximo = costo;				
+		this.costoMaximo = costoMaximo;				
 	}
 	
 	public int getId() {
@@ -43,19 +43,19 @@ public class Seguro {
 		this.tipo = tipo;
 	}
 
-	public String getCosto() {
+	public float getCosto() {
 		return costo;
 	}
 
-	public void setCosto(String costo) {
+	public void setCosto(float costo) {
 		this.costo = costo;
 	}
 
-	public String getCostoMaximo() {
+	public float getCostoMaximo() {
 		return costoMaximo;
 	}
 
-	public void setCostoMaximo(String costoMaximo) {
+	public void setCostoMaximo(float costoMaximo) {
 		this.costoMaximo = costoMaximo;
 	}
 
