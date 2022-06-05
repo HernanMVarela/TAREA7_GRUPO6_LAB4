@@ -57,20 +57,50 @@ public class SeguroDaoImpl implements SeguroDao {
 
 	@Override
 	public ArrayList<Seguro> ListarTodo() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
+		ArrayList<Seguro> result = new ArrayList<Seguro>();
+		Conexion conexion = Conexion.getConexion();
+		PreparedStatement statement;
+		ResultSet resultSet;
+		System.out.println("Metodo: ListarTodo");
+		try{
+			
+			statement = conexion.getSQLConexion().prepareStatement(leerTodo);
+			resultSet = statement.executeQuery();
+			
+			while(resultSet.next()){
+				
+				Seguro temporal = new Seguro();
+				temporal.setId(resultSet.getInt("idSeguro"));
+				System.out.println("IdSeguro: "+temporal.getId());
+				temporal.setDescripcion(resultSet.getString("descripcion"));
+				TipoSeguro tipoSeguroTemporal = new TipoSeguro();
+				tipoSeguroTemporal.setID(resultSet.getInt("idTipo"));
+				//agregar una busqueda de tipos de seguros
+				//tipoSeguroTemporal.setDescripcion(descripción);
+				temporal.setTipo(tipoSeguroTemporal);
+				temporal.setCosto(resultSet.getFloat("costoContratacion"));
+				temporal.setCostoMaximo(resultSet.getFloat("costoAsegurado"));
+				System.out.println("CostoMaximo: "+temporal.getCostoMaximo());
+				result.add(temporal);
+			}
+			//connection.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{ }		
+		return result;
+	}
+
+	@Override
+	public ArrayList<Seguro> ListarPorTipo(int tipoSeleccionado) {
+				
 		ArrayList<Seguro> result = new ArrayList<Seguro>();
 		Connection connection = null;
 		try{
 			connection = Conexion.getConexion().getSQLConexion();
-			Statement statement = connection.createStatement();
-			
-			ResultSet resultSet = statement.executeQuery(leerTodo);
+			PreparedStatement statement = connection.prepareStatement(leerPorTipo);
+			statement.setInt(1, tipoSeleccionado);
+			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()){
 				
@@ -86,7 +116,7 @@ public class SeguroDaoImpl implements SeguroDao {
 				temporal.setCostoMaximo(resultSet.getFloat("costoAsegurado"));
 				result.add(temporal);
 			}
-			connection.close();
+			//connection.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{ }		

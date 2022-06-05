@@ -17,39 +17,63 @@
 <body>
 <a href="Inicio.jsp">Inicio</a> - <a href="Agregar.jsp">Agregar</a> - <a href="Listar.jsp">Listar</a><br><br>
 
-<h2>Tipo de seguro de la base de datos</h2>
-
 <form action="ServletSeguro" method="get">
 
 <%
-	TipoNegocio TipoNeg = new TipoNegocioImpl();
-	List<TipoSeguro> listatipo= TipoNeg.listar();
+	TipoNegocio tipoNegocio = new TipoNegocioImpl();
+	ArrayList<TipoSeguro> listaTipo = tipoNegocio.ListarTodo();
 %>
 
+<%
+if(!listaTipo.isEmpty()){ %>
+	<h2>Tipo de seguro de la base de datos</h2>
+	<p>Busqueda por tipo de seguro:
+	<select name="opc">
+	<option value="0">Listar todos</option>
+	<%
+	for(TipoSeguro tipo : listaTipo){
+		%><option value="<%=tipo.getID()%>"><%=tipo.getDescripcion().toString()%></option>
+	<%}%>	
+	</select> <input type="submit" name="btnListar" value="Listar"> </p> 
+<% } %>
+
+<!--
 <p>Busqueda por tipo de seguro:
 <select name="slcTipo">
 	<option value="0">Listar todos</option>
-	<%if(listatipo!=null){
-		for(TipoSeguro tipo : listatipo){ 
-		%><option value="<%=tipo.getID()%>"><%=tipo.getDescripcion().toString()%></option>
-	<%}}%>	
+-->
+<%-- 	<%if(listatipo!=null){ --%>
+<!--  		for(TipoSeguro tipo : listatipo){ -->
+<%-- 		%><option value="<%=tipo.getID()%>"><%=tipo.getDescripcion().toString()%></option> --%>
+<%-- 	<%}}%>	 --%>
+<!--
 </select> <input type="submit" name="btnListar" value="Listar"> </p> 
-
+-->
 <%
-	ArrayList<Seguro> lista = null;
-	if(request.getAttribute("listaseguros")!=null){
-		lista = (ArrayList<Seguro>)request.getAttribute("listaseguros");
+	ArrayList<Seguro> listaSeguros = null;
+	if(request.getAttribute("listaSeguros")!=null){
+		listaSeguros = (ArrayList<Seguro>)request.getAttribute("listaSeguros");
 		%>
 		<table border="1">
 		<tr><th> ID Seguro </th><th> Descripción </th><th> Descripción Tipo </th><th> Costo Contratación </th><th> Costo Asegurado </th> </tr>
 		<%
-		for (Seguro seg : lista){
-			if(seg.getTipo().getID() == (int)request.getAttribute("idtipo") || (int)request.getAttribute("idtipo") == 0){
+		
+		for (Seguro seg : listaSeguros){
+// 			if(seg.getTipo().getID() == (int)request.getAttribute("idtipo") || (int)request.getAttribute("idtipo") == 0){
+				
 				%>
-					<tr><td> <%=seg.getId()%> </td><td> <%=seg.getDescripcion() %> </td> <td> <%=seg.getTipo().getDescripcion()%> </td> 
-					<td> <%=seg.getCosto()%> </td> <td> <%=seg.getCosto() %> </td></tr>
+				
+					<tr>
+						<td> <%=seg.getId()%> </td>
+						<td> <%=seg.getDescripcion() %> </td> 
+<%-- 						<td> <%=seg.getTipo().getDescripcion()%> </td>  --%>
+						<td> <%=seg.getTipo().getID()%> </td>
+						<td> <%=seg.getCosto()%> </td> 
+						<td> <%=seg.getCostoMaximo() %> </td>
+					</tr>
+				
 				<%
-			}
+// 			}
 		}
 	}
  %>

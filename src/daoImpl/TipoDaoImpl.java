@@ -1,8 +1,7 @@
 package daoImpl;
 
-import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import dao.TipoDao;
@@ -14,20 +13,16 @@ public class TipoDaoImpl implements TipoDao {
 	
 	@Override
 	public ArrayList<TipoSeguro> ListarTodo() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		ArrayList<TipoSeguro> result = new ArrayList<TipoSeguro>();
-		Connection connection = null;
+		Conexion conexion = Conexion.getConexion();
+		PreparedStatement statement;
+		ResultSet resultSet;
+		
 		try{
 			
-			connection = Conexion.getConexion().getSQLConexion();
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(leerTodo);
+			statement = conexion.getSQLConexion().prepareStatement(leerTodo);
+			resultSet = statement.executeQuery();
 			
 			while(resultSet.next()){
 				TipoSeguro temporal = new TipoSeguro();
@@ -35,7 +30,6 @@ public class TipoDaoImpl implements TipoDao {
 				temporal.setDescripcion(resultSet.getString("descripcion"));
 				result.add(temporal);
 			}
-			connection.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{ }		

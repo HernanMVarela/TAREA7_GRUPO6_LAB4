@@ -8,5 +8,6 @@ public interface SeguroDao {
 	
 	public boolean Agregar(Seguro poliza);
 	public ArrayList<Seguro> ListarTodo();
+	public ArrayList<Seguro> ListarPorTipo(int tipoSeleccionado);
 	
 }
