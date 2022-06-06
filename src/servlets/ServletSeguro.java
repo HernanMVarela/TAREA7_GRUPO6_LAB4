@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entidad.Seguro;
+import entidad.TipoSeguro;
 import negocio.SeguroNegocio;
+import negocio.TipoNegocio;
 import negocioImpl.SeguroNegocioImpl;
+import negocioImpl.TipoNegocioImpl;
 
 
 @WebServlet("/ServletSeguro")
@@ -40,15 +43,64 @@ public class ServletSeguro extends HttpServlet {
 				listaSeguros = seguroNegocio.ListarPorTipo(tipoSeleccionado);
 			}
 			
-			
 			// DEVOLVER LISTA E ID TIPO SEGURO
 			request.setAttribute("listaSeguros", listaSeguros);
-			//request.setAttribute("listaTipoSeguros", listaTipoSeguros);
 			request.setAttribute("idtipo", tipoSeleccionado);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/Listar.jsp");   
 	        rd.forward(request, response);
 			
+		}
+		
+		if(request.getParameter("btnAgregar")!=null) {
+			String mensaje = "Error - Datos incompletos, faltante:";
+			boolean flag = true;
+			String descrip = "";
+			float costo =0, costoaseg = 0;
+			TipoSeguro nuevo = new TipoSeguro();
+			TipoNegocio TiNeg = new TipoNegocioImpl();
+			
+			if(!request.getParameter("txtDescripcion").isEmpty()) {
+				descrip = request.getParameter("txtDescripcion").toString();
+			}else {
+				mensaje += " Descripción |";
+				flag = false;
+			}
+			
+			if(request.getParameter("slcTipo")!= null) {
+				if(Integer.parseInt(request.getParameter("slcTipo"))!=0) {
+					nuevo = TiNeg.buscarTipo(Integer.parseInt(request.getParameter("slcTipo")));
+				}else {
+					mensaje += " Tipo de seguro |";
+					flag = false;
+				}
+			}
+			
+			if(!request.getParameter("txtContratacion").isEmpty()) {		
+				costo = Float.parseFloat(request.getParameter("txtContratacion").toString());
+			}else {
+				mensaje += " Costo de contratación |";
+				flag = false;
+			}
+		
+			if(!request.getParameter("txtMaximo").isEmpty()) {		
+				costoaseg = Float.parseFloat(request.getParameter("txtMaximo").toString());
+			}else {
+				mensaje += " Costo asegurado |";
+				flag = false;
+			}
+			
+			if(flag) {
+				mensaje ="Seguro agregado: " + descrip + " - " + nuevo.getDescripcion() + " - $" + costo + " - $" + costoaseg;
+				SeguroNegocio segNeg = new SeguroNegocioImpl();
+				Seguro nuevoSeg = new Seguro(descrip, costo, costoaseg);
+				nuevoSeg.setTipo(nuevo);
+				segNeg.agregarSeguro(nuevoSeg);
+			}
+			
+			request.setAttribute("Mensaje", mensaje);
+			RequestDispatcher rd = request.getRequestDispatcher("/Agregar.jsp");
+			rd.forward(request, response);
 		}
 
 	}

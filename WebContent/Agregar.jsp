@@ -35,7 +35,7 @@ Id Seguro: <%=id%>
 Descripcion:<input type="text" name="txtDescripcion"required> <br><br>
 	
 	Tipo de seguro: 
-	<select name="tipo" style="width: 138px; ">  
+	<select name="slcTipo" style="width: 138px; ">  
 	
      <option value=null selected disabled hidden>Elegir una</option>
      <%for(TipoSeguro t : listatipo){
@@ -52,10 +52,15 @@ Descripcion:<input type="text" name="txtDescripcion"required> <br><br>
 	
 	Costo maximo asegurado: <input type="text"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="txtMaximo" required> <br><br>
 		
-	<input type="submit" name="btnAceptar" value="Aceptar">
+	<input type="submit" name="btnAgregar" value="Agregar">
 	
+	<h4 style="color: Red;"><%
+if(request.getAttribute("Mensaje")!=null){
+	%><%=request.getAttribute("Mensaje") %><%
+}
+ %></h4>
 </form>
-
+<!--  
 <%
 	int filas=0;
 	if(request.getAttribute("fila") != null)
@@ -64,6 +69,6 @@ Descripcion:<input type="text" name="txtDescripcion"required> <br><br>
 <% if(filas == 1){ %>
 			<b>¡Seguro agregado con exito! </b>
 			<%} %>
-
+-->
 </body>
 </html>

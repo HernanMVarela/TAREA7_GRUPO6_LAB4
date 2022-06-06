@@ -58,22 +58,18 @@ if(!listaTipo.isEmpty()){ %>
 		<tr><th> ID Seguro </th><th> Descripción </th><th> Descripción Tipo </th><th> Costo Contratación </th><th> Costo Asegurado </th> </tr>
 		<%
 		
-		for (Seguro seg : listaSeguros){
-// 			if(seg.getTipo().getID() == (int)request.getAttribute("idtipo") || (int)request.getAttribute("idtipo") == 0){
-				
+		for (Seguro seg : listaSeguros){				
 				%>
 				
 					<tr>
 						<td> <%=seg.getId()%> </td>
 						<td> <%=seg.getDescripcion() %> </td>
  						<td> <%=seg.getTipo().getDescripcion()%> </td>
-						<td> <%=seg.getTipo().getID()%> </td>
 						<td> <%=seg.getCosto()%> </td>
 						<td> <%=seg.getCostoMaximo() %> </td>
 					</tr>
 				
 				<%
-// 			}
 		}
 	}
  %>

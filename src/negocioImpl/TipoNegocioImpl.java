@@ -1,8 +1,6 @@
 package negocioImpl;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import dao.TipoDao;
 import daoImpl.TipoDaoImpl;
 import entidad.TipoSeguro;
@@ -14,6 +12,12 @@ public class TipoNegocioImpl implements TipoNegocio{
 	public ArrayList<TipoSeguro> ListarTodo() {
 		TipoDao Tdao = new TipoDaoImpl();
 		return Tdao.ListarTodo();
+	}
+
+	@Override
+	public TipoSeguro buscarTipo(int id) {
+		TipoDao Tdao = new TipoDaoImpl();
+		return Tdao.buscarTipo(id);
 	}
 
 }
