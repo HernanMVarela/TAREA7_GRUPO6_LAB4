@@ -65,10 +65,10 @@ if(!listaTipo.isEmpty()){ %>
 				
 					<tr>
 						<td> <%=seg.getId()%> </td>
-						<td> <%=seg.getDescripcion() %> </td> 
-<%-- 						<td> <%=seg.getTipo().getDescripcion()%> </td>  --%>
+						<td> <%=seg.getDescripcion() %> </td>
+ 						<td> <%=seg.getTipo().getDescripcion()%> </td>
 						<td> <%=seg.getTipo().getID()%> </td>
-						<td> <%=seg.getCosto()%> </td> 
+						<td> <%=seg.getCosto()%> </td>
 						<td> <%=seg.getCostoMaximo() %> </td>
 					</tr>
 				

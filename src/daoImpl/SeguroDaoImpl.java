@@ -13,8 +13,10 @@ import entidad.TipoSeguro;
 public class SeguroDaoImpl implements SeguroDao {
 
 	private String aInsertar = "INSERT INTO SEGUROS (DESCRIPCION, IDTIPO, COSTOCONTRATACION, COSTOASEGURADO) VALUES (?,?,?,?)";
-	private String leerTodo = "SELECT * FROM SEGUROS";
-	private String leerPorTipo = "SELECT * FROM SEGUROS WHERE idTipo = ?";
+	private String leerTodo =
+		"SELECT s.idSeguro, s.descripcion, s.idTipo, t.descripcion tipoDescripcion, s.costoContratacion, s.costoAsegurado FROM SEGUROS s LEFT JOIN tiposeguros t on s.idTipo = t.idTipo";
+	private String leerPorTipo =
+		"SELECT s.idSeguro, s.descripcion, s.idTipo, t.descripcion tipoDescripcion, s.costoContratacion, s.costoAsegurado FROM SEGUROS s LEFT JOIN tiposeguros t on s.idTipo = t.idTipo WHERE idTipo = ?";
 	private String lastid = "SELECT MAX(s.idSeguro) FROM segurosgroup.seguros s order by s.idSeguro";
 	
 	@Override
@@ -77,8 +79,7 @@ public class SeguroDaoImpl implements SeguroDao {
 				temporal.setDescripcion(resultSet.getString("descripcion"));
 				TipoSeguro tipoSeguroTemporal = new TipoSeguro();
 				tipoSeguroTemporal.setID(resultSet.getInt("idTipo"));
-				//agregar una busqueda de tipos de seguros
-				//tipoSeguroTemporal.setDescripcion(descripción);
+				tipoSeguroTemporal.setDescripcion(resultSet.getString("tipoDescripcion"));
 				temporal.setTipo(tipoSeguroTemporal);
 				temporal.setCosto(resultSet.getFloat("costoContratacion"));
 				temporal.setCostoMaximo(resultSet.getFloat("costoAsegurado"));
@@ -110,8 +111,7 @@ public class SeguroDaoImpl implements SeguroDao {
 				temporal.setDescripcion(resultSet.getString("descripcion"));
 				TipoSeguro tipoSeguroTemporal = new TipoSeguro();
 				tipoSeguroTemporal.setID(resultSet.getInt("idTipo"));
-				//agregar una busqueda de tipos de seguros
-				//tipoSeguroTemporal.setDescripcion(descripción);				
+				tipoSeguroTemporal.setDescripcion(resultSet.getString("tipoDescripcion"));
 				temporal.setTipo(tipoSeguroTemporal);
 				temporal.setCosto(resultSet.getFloat("costoContratacion"));
 				temporal.setCostoMaximo(resultSet.getFloat("costoAsegurado"));
