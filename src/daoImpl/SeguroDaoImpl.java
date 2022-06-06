@@ -16,7 +16,7 @@ public class SeguroDaoImpl implements SeguroDao {
 	private String leerTodo =
 		"SELECT s.idSeguro, s.descripcion, s.idTipo, t.descripcion tipoDescripcion, s.costoContratacion, s.costoAsegurado FROM SEGUROS s LEFT JOIN tiposeguros t on s.idTipo = t.idTipo";
 	private String leerPorTipo =
-		"SELECT s.idSeguro, s.descripcion, s.idTipo, t.descripcion tipoDescripcion, s.costoContratacion, s.costoAsegurado FROM SEGUROS s LEFT JOIN tiposeguros t on s.idTipo = t.idTipo WHERE idTipo = ?";
+		"SELECT s.idSeguro, s.descripcion, s.idTipo, t.descripcion tipoDescripcion, s.costoContratacion, s.costoAsegurado FROM SEGUROS s LEFT JOIN tiposeguros t on s.idTipo = t.idTipo WHERE s.idTipo = ?";
 	private String lastid = "SELECT MAX(s.idSeguro) FROM segurosgroup.seguros s order by s.idSeguro";
 	
 	@Override
