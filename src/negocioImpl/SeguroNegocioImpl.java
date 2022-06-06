@@ -25,4 +25,17 @@ public class SeguroNegocioImpl implements SeguroNegocio{
 		return result;
 	}
 
+	@Override
+	public int ultimoId() {
+		SeguroDao SegDao = new SeguroDaoImpl();
+		return SegDao.ultimoId();
+	}
+
+	@Override
+	public boolean agregarSeguro(Seguro agregar) {
+		SeguroDao SegDao = new SeguroDaoImpl();
+		// VALIDAR QUE EL ID NO EXISTA (REDUNDANTE POR SER AUTOINCREMENTAL, PERO IGUAL...)
+		return SegDao.Agregar(agregar);
+	}
+
 }

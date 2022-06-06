@@ -2,6 +2,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="entidad.TipoSeguro"%>
 <%@page import="negocio.TipoNegocio"%>
+<%@page import="negocio.SeguroNegocio"%>
+<%@page import="negocioImpl.SeguroNegocioImpl"%>
 <%@page import="negocioImpl.TipoNegocioImpl"%>
 <%@page import="entidad.Seguro"%>
 <%@page import="servlets.ServletTipoSeguro"%>
@@ -15,38 +17,31 @@
 </head>
 <body>
 <a href="Inicio.jsp">Inicio</a> - <a href="Agregar.jsp">Agregar</a> - <a href="Listar.jsp">Listar</a><br><br>
-<h1>AGREGAR</h1>
+<h3>Agregar seguros</h3><br>
 
-<form action="ServletSeguro" method="get">
-<%String ids= null;
+<% 
+	SeguroNegocio SegNeg = new SeguroNegocioImpl();
+	int id = SegNeg.ultimoId()+1;
 
-if(request.getAttribute("id")!=null){
-
-	ids= (String) request.getAttribute("id");}
+	TipoNegocio TipoNeg = new TipoNegocioImpl();
+	List<TipoSeguro> listatipo= TipoNeg.ListarTodo();
 %>
 
-Id Seguro: <%=ids%>
+<form action="ServletSeguro" method="get">
+
+Id Seguro: <%=id%>
 <br><br>
 
 Descripcion:<input type="text" name="txtDescripcion"required> <br><br>
 	
 	Tipo de seguro: 
 	<select name="tipo" style="width: 138px; ">  
-	<%
-	int i=0;
-   ArrayList<TipoSeguro> list = new ArrayList<TipoSeguro>();
-
-     if(request.getAttribute("listatipo")!=null){
-    	 list= (ArrayList<TipoSeguro>) request.getAttribute("listatipo");}
-     %>
+	
      <option value=null selected disabled hidden>Elegir una</option>
-     <%for(TipoSeguro t : list){
+     <%for(TipoSeguro t : listatipo){
      	 
     	 %>
-     
-	
-		<option ><%=t.getDescripcion()%></option>
-		
+		<option value="<%=t.getID()%>"><%=t.getDescripcion().toString()%></option>
 		<%} %>
 		
 	</select>
@@ -69,10 +64,6 @@ Descripcion:<input type="text" name="txtDescripcion"required> <br><br>
 <% if(filas == 1){ %>
 			<b>¡Seguro agregado con exito! </b>
 			<%} %>
-
-
-
-
 
 </body>
 </html>

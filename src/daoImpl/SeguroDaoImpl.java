@@ -15,6 +15,7 @@ public class SeguroDaoImpl implements SeguroDao {
 	private String aInsertar = "INSERT INTO SEGUROS (DESCRIPCION, IDTIPO, COSTOCONTRATACION, COSTOASEGURADO) VALUES (?,?,?,?)";
 	private String leerTodo = "SELECT * FROM SEGUROS";
 	private String leerPorTipo = "SELECT * FROM SEGUROS WHERE idTipo = ?";
+	private String lastid = "SELECT MAX(s.idSeguro) FROM segurosgroup.seguros s order by s.idSeguro";
 	
 	@Override
 	public boolean Agregar(Seguro poliza) {
@@ -121,6 +122,31 @@ public class SeguroDaoImpl implements SeguroDao {
 			e.printStackTrace();
 		}finally{ }		
 		return result;
+	}
+
+	@Override
+	public int ultimoId() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		int last=0;
+		Conexion conexion = Conexion.getConexion();
+		PreparedStatement st;
+		ResultSet rs;
+		
+		try {
+			st = conexion.getSQLConexion().prepareStatement(lastid);
+			rs = st.executeQuery();
+			while(rs.next()) {
+				last = rs.getInt(1);			
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return last;
 	}
 	
 }
