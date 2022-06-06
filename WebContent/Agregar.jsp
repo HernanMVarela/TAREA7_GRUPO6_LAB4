@@ -37,7 +37,7 @@ Descripcion:<input type="text" name="txtDescripcion"required> <br><br>
 	Tipo de seguro: 
 	<select name="slcTipo" style="width: 138px; ">  
 	
-     <option value=null selected disabled hidden>Elegir una</option>
+     <option value="0" selected disabled>Elegir una</option>
      <%for(TipoSeguro t : listatipo){
      	 
     	 %>
@@ -48,9 +48,9 @@ Descripcion:<input type="text" name="txtDescripcion"required> <br><br>
 	
 	<br><br>
 	
-	Costo de contratacion:<input type="text"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="txtContratacion" required> <br><br>
+	Costo de contratacion:<input type="text" onkeyup="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" name="txtContratacion" required> <br><br>
 	
-	Costo maximo asegurado: <input type="text"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="txtMaximo" required> <br><br>
+	Costo maximo asegurado: <input type="text" onkeyup="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" name="txtMaximo" required> <br><br>
 		
 	<input type="submit" name="btnAgregar" value="Agregar">
 	

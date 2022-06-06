@@ -33,13 +33,10 @@ public class ServletSeguro extends HttpServlet {
 			ArrayList<Seguro> listaSeguros = null;
 						
 			if( tipoSeleccionado==0) {
-				System.out.println("Opcion 0");
 				SeguroNegocio seguroNegocio = new SeguroNegocioImpl();
 				listaSeguros = seguroNegocio.ListarTodo();
 			} else {
 				SeguroNegocio seguroNegocio = new SeguroNegocioImpl();
-				System.out.println("Opcion "+tipoSeleccionado);
-				//listar por idtipo
 				listaSeguros = seguroNegocio.ListarPorTipo(tipoSeleccionado);
 			}
 			
@@ -66,15 +63,20 @@ public class ServletSeguro extends HttpServlet {
 				mensaje += " Descripción |";
 				flag = false;
 			}
-			
+
 			if(request.getParameter("slcTipo")!= null) {
+				System.out.println("Tipo de seguro: " + Integer.parseInt(request.getParameter("slcTipo")));
 				if(Integer.parseInt(request.getParameter("slcTipo"))!=0) {
 					nuevo = TiNeg.buscarTipo(Integer.parseInt(request.getParameter("slcTipo")));
 				}else {
-					mensaje += " Tipo de seguro |";
+					mensaje += " Tipo de seguro";
 					flag = false;
 				}
+			}else {
+				mensaje += " Tipo de seguro";
+				flag = false;
 			}
+			
 			
 			if(!request.getParameter("txtContratacion").isEmpty()) {		
 				costo = Float.parseFloat(request.getParameter("txtContratacion").toString());
