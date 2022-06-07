@@ -14,17 +14,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Seguros Group - Listar Seguros</title>
 </head>
-<body>
-<a href="Inicio.jsp">Inicio</a> - <a href="Agregar.jsp">Agregar</a> - <a href="Listar.jsp">Listar</a><br><br>
+<body style='background-image: url("https://i.imgur.com/CujGJpf.jpg"); background-color: #FFFFFF; background-repeat: no-repeat; background-size: cover; max-width: 99%; max-height: 99%'>
+<div style="padding: 10px">
+	<a style="margin:15px" href="Inicio.jsp">Inicio</a><a style="margin:15px" href="Agregar.jsp">Agregar</a><a style="margin:15px" href="Listar.jsp">Listar</a>
+</div>
 
 <form action="ServletSeguro" method="get">
 
 <%
 	TipoNegocio tipoNegocio = new TipoNegocioImpl();
 	ArrayList<TipoSeguro> listaTipo = tipoNegocio.ListarTodo();
-%>
-
-<%
+	
 if(!listaTipo.isEmpty()){ %>
 	<h2>Tipo de seguro de la base de datos</h2>
 	<p>Busqueda por tipo de seguro:
@@ -35,26 +35,14 @@ if(!listaTipo.isEmpty()){ %>
 		%><option value="<%=tipo.getID()%>"><%=tipo.getDescripcion().toString()%></option>
 	<%}%>	
 	</select> <input type="submit" name="btnListar" value="Listar"> </p> 
-<% } %>
+<% }
 
-<!--
-<p>Busqueda por tipo de seguro:
-<select name="slcTipo">
-	<option value="0">Listar todos</option>
--->
-<%-- 	<%if(listatipo!=null){ --%>
-<!--  		for(TipoSeguro tipo : listatipo){ -->
-<%-- 		%><option value="<%=tipo.getID()%>"><%=tipo.getDescripcion().toString()%></option> --%>
-<%-- 	<%}}%>	 --%>
-<!--
-</select> <input type="submit" name="btnListar" value="Listar"> </p> 
--->
-<%
 	ArrayList<Seguro> listaSeguros = null;
 	if(request.getAttribute("listaSeguros")!=null){
 		listaSeguros = (ArrayList<Seguro>)request.getAttribute("listaSeguros");
 		%>
-		<table border="1">
+		<div style='background: rgba(200,200,200,0.3); border: solid; border-radius: 10px'><table border="1" style='border-radius:11px'>
+		
 		<tr><th> ID Seguro </th><th> Descripción </th><th> Descripción Tipo </th><th> Costo Contratación </th><th> Costo Asegurado </th> </tr>
 		<%
 		
@@ -74,7 +62,7 @@ if(!listaTipo.isEmpty()){ %>
 	}
  %>
 	
-</table>	
+</table></div>	
 
 
 </form>

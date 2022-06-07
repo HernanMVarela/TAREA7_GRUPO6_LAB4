@@ -15,8 +15,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Seguros Group - Agregar Seguro</title>
 </head>
-<body>
-<a href="Inicio.jsp">Inicio</a> - <a href="Agregar.jsp">Agregar</a> - <a href="Listar.jsp">Listar</a><br><br>
+<body style='background-image: url("https://i.imgur.com/CujGJpf.jpg"); background-color: #FFFFFF; background-repeat: no-repeat; background-size: cover; max-width: 99%; max-height: 99%'>
+<div style="padding: 10px">
+	<a style="margin:15px" href="Inicio.jsp">Inicio</a><a style="margin:15px" href="Agregar.jsp">Agregar</a><a style="margin:15px" href="Listar.jsp">Listar</a>
+</div>
+
 <h3>Agregar seguros</h3><br>
 
 <% 
