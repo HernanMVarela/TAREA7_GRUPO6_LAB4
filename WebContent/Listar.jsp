@@ -41,7 +41,7 @@ if(!listaTipo.isEmpty()){ %>
 	if(request.getAttribute("listaSeguros")!=null){
 		listaSeguros = (ArrayList<Seguro>)request.getAttribute("listaSeguros");
 		%>
-		<div style='background: rgba(200,200,200,0.3); border: solid; border-radius: 10px'><table border="1" style='border-radius:11px'>
+		<div style='background: rgba(200,200,200,0.5); border: solid; border-radius: 10px'><table border="1" style='border-radius:11px'>
 		
 		<tr><th> ID Seguro </th><th> Descripción </th><th> Descripción Tipo </th><th> Costo Contratación </th><th> Costo Asegurado </th> </tr>
 		<%

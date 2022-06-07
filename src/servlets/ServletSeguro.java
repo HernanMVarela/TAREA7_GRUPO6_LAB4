@@ -65,7 +65,6 @@ public class ServletSeguro extends HttpServlet {
 			}
 
 			if(request.getParameter("slcTipo")!= null) {
-				System.out.println("Tipo de seguro: " + Integer.parseInt(request.getParameter("slcTipo")));
 				if(Integer.parseInt(request.getParameter("slcTipo"))!=0) {
 					nuevo = TiNeg.buscarTipo(Integer.parseInt(request.getParameter("slcTipo")));
 				}else {

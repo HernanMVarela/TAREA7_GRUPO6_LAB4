@@ -57,21 +57,11 @@ Descripcion:<input type="text" name="txtDescripcion"required> <br><br>
 		
 	<input type="submit" name="btnAgregar" value="Agregar">
 	
-	<h4 style="color: Red;"><%
+	<h4 style="color: rgba(0,0,153,1);"><%
 if(request.getAttribute("Mensaje")!=null){
 	%><%=request.getAttribute("Mensaje") %><%
 }
  %></h4>
 </form>
-<!--  
-<%
-	int filas=0;
-	if(request.getAttribute("fila") != null)
-		filas = (int)request.getAttribute("fila");
-%>
-<% if(filas == 1){ %>
-			<b>¡Seguro agregado con exito! </b>
-			<%} %>
--->
 </body>
 </html>

@@ -64,7 +64,6 @@ public class SeguroDaoImpl implements SeguroDao {
 		Conexion conexion = Conexion.getConexion();
 		PreparedStatement statement;
 		ResultSet resultSet;
-		System.out.println("Metodo: ListarTodo");
 		try{
 			
 			statement = conexion.getSQLConexion().prepareStatement(leerTodo);
@@ -74,7 +73,6 @@ public class SeguroDaoImpl implements SeguroDao {
 				
 				Seguro temporal = new Seguro();
 				temporal.setId(resultSet.getInt("idSeguro"));
-				System.out.println("IdSeguro: "+temporal.getId());
 				temporal.setDescripcion(resultSet.getString("descripcion"));
 				TipoSeguro tipoSeguroTemporal = new TipoSeguro();
 				tipoSeguroTemporal.setID(resultSet.getInt("idTipo"));
@@ -82,7 +80,6 @@ public class SeguroDaoImpl implements SeguroDao {
 				temporal.setTipo(tipoSeguroTemporal);
 				temporal.setCosto(resultSet.getFloat("costoContratacion"));
 				temporal.setCostoMaximo(resultSet.getFloat("costoAsegurado"));
-				System.out.println("CostoMaximo: "+temporal.getCostoMaximo());
 				result.add(temporal);
 			}
 			//connection.close();
