@@ -40,24 +40,27 @@ if(!listaTipo.isEmpty()){ %>
 	ArrayList<Seguro> listaSeguros = null;
 	if(request.getAttribute("listaSeguros")!=null){
 		listaSeguros = (ArrayList<Seguro>)request.getAttribute("listaSeguros");
+		if(!listaSeguros.isEmpty()){
 		%>
-		<div style='background: rgba(200,200,200,0.5); border: solid; border-radius: 10px'><table border="1" style='border-radius:11px'>
-		
-		<tr><th> ID Seguro </th><th> Descripción </th><th> Descripción Tipo </th><th> Costo Contratación </th><th> Costo Asegurado </th> </tr>
-		<%
-		
-		for (Seguro seg : listaSeguros){				
-				%>
-				
-					<tr>
-						<td> <%=seg.getId()%> </td>
-						<td> <%=seg.getDescripcion() %> </td>
- 						<td> <%=seg.getTipo().getDescripcion()%> </td>
-						<td> <%=seg.getCosto()%> </td>
-						<td> <%=seg.getCostoMaximo() %> </td>
-					</tr>
-				
-				<%
+			<div style='background: rgba(200,200,200,0.5); border: solid; border-radius: 10px'><table border="1" style='border-radius:11px'>
+			
+			<tr><th> ID Seguro </th><th> Descripción </th><th> Descripción Tipo </th><th> Costo Contratación </th><th> Costo Asegurado </th> </tr>
+			<%
+			
+			for (Seguro seg : listaSeguros){				
+					%>
+						<tr>
+							<td> <%=seg.getId()%> </td>
+							<td> <%=seg.getDescripcion() %> </td>
+	 						<td> <%=seg.getTipo().getDescripcion()%> </td>
+							<td> <%=seg.getCosto()%> </td>
+							<td> <%=seg.getCostoMaximo() %> </td>
+						</tr>
+					<%
+			}
+		}
+		else{
+			%><h3 style="color: rgba(0,0,153,1);">No se encontraron resultados</h3><%
 		}
 	}
  %>

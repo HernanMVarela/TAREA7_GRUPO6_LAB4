@@ -17,8 +17,8 @@
 	<h1><u><b>Tarea N°7 - Grupo 6</b></u></h1><br>
 	<h2><b>Participantes:</b></h2>
 	<h3><i>Emanuel Hiram Barreto Hernandez</i></h3>
+	<h3><i>Bruno Mauricio Molteni</i></h3>
 	<h3><i>Francisco Muslera</i></h3>
-	<h3><i>Bruno Molteni</i></h3>
 	<h3><i>Christian Pablo Sepulveda</i></h3>
 	<h3><i>Hermenegildo Toloza</i></h3>
 	<h3><i>Hernán Matías Varela</i></h3>
